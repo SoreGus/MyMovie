@@ -13,6 +13,8 @@ class MMMovieBusiness: NSObject {
     let movieProvider = MMMovieProvider()
     let movieImageProvider = MMMovieImageProvider()
     
+    let kImageURLPrefix = "https://image.tmdb.org/t/p/w300"
+    
     func getPopularMovies(completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
         
         movieProvider.getPopularMovies { (success, data) in
@@ -85,6 +87,8 @@ class MMMovieBusiness: NSObject {
                 completion(false,nil)
                 return
             }
+            movieObject.posterImagePath = kImageURLPrefix + movieObject.posterImagePath!
+            movieObject.backdropImagePath = kImageURLPrefix + movieObject.backdropImagePath!
             
             completion(true,movieObject)
             

@@ -17,7 +17,7 @@ class MMMovieImageProvider: NSObject {
     
     func getImagesFromTMDB(tmdbId:Int,completion:@escaping (_ success:Bool,_ data:Data?)->Void){
         
-        let urlString = baseURL + tmdbId + "?" + kApiKey_FIELD + "=" + kApiKey_VALUE
+        let urlString = baseURL + "\(tmdbId)" + "?" + kApiKey_FIELD + "=" + kApiKey_VALUE
         
         sendRequest(urlString:urlString) { (success, data) in
             completion(success,data)
