@@ -19,6 +19,10 @@ class MMMovieModel: NSObject {
     private let kTagline_KEY = "tagline"
     private let kOverview_KEY = "overview"
     private let kRating_KEY = "rating"
+    private let kGenres_KEY = "genres"
+    
+    private let kPosterImagePath_KEY = "poster_path"
+    private let kBackdropImagePath_KEY = "backdrop_path"
     
     var title:String!
     var year:Int!
@@ -28,6 +32,10 @@ class MMMovieModel: NSObject {
     var tagline:String!
     var overview:String!
     var rating:Double!
+    var genres:[String]!
+    
+    var posterImagePath:String?
+    var backdropImagePath:String?
     
     override init(){
         
@@ -44,6 +52,7 @@ class MMMovieModel: NSObject {
         guard let tagline = dict[kTagline_KEY] as? String else { return false }
         guard let overview = dict[kOverview_KEY] as? String else { return false }
         guard let rating = dict[kRating_KEY] as? Double else { return false }
+        guard let genres = dict[kGenres_KEY] as? [String] else { return false }
         
         self.title = title
         self.year = year
@@ -53,6 +62,19 @@ class MMMovieModel: NSObject {
         self.tagline = tagline
         self.overview = overview
         self.rating = rating
+        self.genres = genres
+        
+        return true
+        
+    }
+    
+    func mapImagePathsFromTMDBAPI(dict:[String:Any]) -> Bool{
+        
+        guard let posterImagePath = dict[kPosterImagePath_KEY] as? String else { return false }
+        guard let backdropImagePath = dict[kBackdropImagePath_KEY] as? String else { return false }
+        
+        self.posterImagePath = posterImagePath
+        self.backdropImagePath = backdropImagePath
         
         return true
         
@@ -70,6 +92,15 @@ class MMMovieModel: NSObject {
         dict[kTagline_KEY] = self.tagline
         dict[kOverview_KEY] = self.overview
         dict[kRating_KEY] = self.rating
+        dict[kGenres_KEY] = self.genres
+        
+        if let posterImagePath = self.posterImagePath{
+           dict[kPosterImagePath_KEY] = posterImagePath
+        }
+        
+        if let backdropImagePath = self.backdropImagePath{
+            dict[kBackdropImagePath_KEY] = backdropImagePath
+        }
         
         return dict
         
