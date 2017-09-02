@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40CF44921F5B42EF008A3058 /* MMMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44911F5B42EF008A3058 /* MMMovieModel.swift */; };
+		40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */; };
 		40F3427B1F5B384900A4FAC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F3427A1F5B384900A4FAC5 /* AppDelegate.swift */; };
 		40F3427D1F5B384900A4FAC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F3427C1F5B384900A4FAC5 /* ViewController.swift */; };
 		40F342801F5B384900A4FAC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F3427E1F5B384900A4FAC5 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		2A5AE632F050DF99FE3D8E6F /* Pods-MyMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovie.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMovie/Pods-MyMovie.release.xcconfig"; sourceTree = "<group>"; };
 		40CF44911F5B42EF008A3058 /* MMMovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieModel.swift; sourceTree = "<group>"; };
+		40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieProvider.swift; sourceTree = "<group>"; };
 		40F342771F5B384900A4FAC5 /* MyMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F3427A1F5B384900A4FAC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40F3427C1F5B384900A4FAC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40CF44961F5B4C11008A3058 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		40F3426E1F5B384900A4FAC5 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 				40F3427C1F5B384900A4FAC5 /* ViewController.swift */,
 				40F3427E1F5B384900A4FAC5 /* Main.storyboard */,
 				406B9E6A1F5B422C004E58B8 /* Model */,
+				40CF44961F5B4C11008A3058 /* Provider */,
 				40F342811F5B384900A4FAC5 /* Assets.xcassets */,
 				40F342831F5B384900A4FAC5 /* LaunchScreen.storyboard */,
 				40F342861F5B384900A4FAC5 /* Info.plist */,
@@ -224,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40F3427D1F5B384900A4FAC5 /* ViewController.swift in Sources */,
+				40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */,
 				40F3427B1F5B384900A4FAC5 /* AppDelegate.swift in Sources */,
 				40CF44921F5B42EF008A3058 /* MMMovieModel.swift in Sources */,
 			);
