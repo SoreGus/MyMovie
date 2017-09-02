@@ -15,7 +15,7 @@ class MMMovieImageProvider: NSObject {
     private let kApiKey_FIELD = "api_key"
     private let kApiKey_VALUE = "de34a13151f61aaa51085fbf164f3918"
     
-    func getImagesFromTMDB(tmdbId:String,completion:@escaping (_ success:Bool,_ data:Data?)->Void){
+    func getImagesFromTMDB(tmdbId:Int,completion:@escaping (_ success:Bool,_ data:Data?)->Void){
         
         let urlString = baseURL + tmdbId + "?" + kApiKey_FIELD + "=" + kApiKey_VALUE
         
