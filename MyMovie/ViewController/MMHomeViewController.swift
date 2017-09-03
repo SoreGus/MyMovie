@@ -8,10 +8,13 @@
 
 import UIKit
 import SDWebImage
+import AASquaresLoading
 
 class MMHomeViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
+    
+    var loadingSquare:AASquaresLoading?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +22,36 @@ class MMHomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        showLoading()
+        
         MMMovieManager.shared.getPopularMovies { (success) in
             if success == true{
-                self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                    self.collectionView.reloadData()
+                }
             }
         }
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    func showLoading(){
+        
+        if loadingSquare == nil{
+            loadingSquare = AASquaresLoading(target: self.view, size: 100)
+            loadingSquare?.backgroundColor = UIColor.clear
+            loadingSquare?.color = UIColor.blue
+        }
+        loadingSquare?.start()
+        
+    }
+    
+    func hideLoading(){
+        
+        if loadingSquare != nil{
+            loadingSquare?.stop()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +75,8 @@ extension MMHomeViewController : UICollectionViewDelegate, UICollectionViewDataS
         
         let movie = MMMovieManager.shared.arrayMovies[indexPath.row]
         cell.subscribe(movie: movie)
+        
+        //print(SDImageCache.shared().getSize())
         
         return cell
     }

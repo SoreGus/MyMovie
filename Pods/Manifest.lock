@@ -1,17 +1,20 @@
 PODS:
+  - AASquaresLoading (1.0.0)
   - ReachabilitySwift (3)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
 
 DEPENDENCIES:
+  - AASquaresLoading
   - ReachabilitySwift
   - SDWebImage
 
 SPEC CHECKSUMS:
+  AASquaresLoading: 4039c25b61835d6f7c73d2d3382d6960a6039fa5
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
 
-PODFILE CHECKSUM: 738301fbbb78ea486a2a5016127f80fb9875b411
+PODFILE CHECKSUM: 54e7132d744f999708e7e2ff765818a5c3f42264
 
 COCOAPODS: 1.2.0

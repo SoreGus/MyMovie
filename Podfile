@@ -7,5 +7,6 @@ target 'MyMovie' do
 
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
+  pod 'AASquaresLoading'
 
 end
