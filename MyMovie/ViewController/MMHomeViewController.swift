@@ -9,12 +9,13 @@
 import UIKit
 import SDWebImage
 import AASquaresLoading
+import ReachabilitySwift
 
-class MMHomeViewController: UIViewController {
+class MMHomeViewController: MMBaseViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     
-    var loadingSquare:AASquaresLoading?
+    let reachability = Reachability()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,34 @@ class MMHomeViewController: UIViewController {
         collectionView.delegate = self
         
         showLoading()
+        
+        if reachability.isReachable{
+            loadMovies()
+        } else{
+            showNotice(text: "Sem Conexão", time: nil)
+        }
+        
+        reachability.whenReachable = { reachability in
+            DispatchQueue.main.async {
+                self.loadMovies()
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            DispatchQueue.main.async {
+                self.showNotice(text: "Sem Conexão", time: nil)
+            }
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
+    }
+    
+    func loadMovies(){
         
         MMMovieManager.shared.getPopularMovies { (success) in
             if success == true{
@@ -34,29 +63,14 @@ class MMHomeViewController: UIViewController {
         }
         
     }
-    
-    func showLoading(){
-        
-        if loadingSquare == nil{
-            loadingSquare = AASquaresLoading(target: self.view, size: 100)
-            loadingSquare?.backgroundColor = UIColor.clear
-            loadingSquare?.color = UIColor.blue
-        }
-        loadingSquare?.start()
-        
-    }
-    
-    func hideLoading(){
-        
-        if loadingSquare != nil{
-            loadingSquare?.stop()
-        }
-        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        SDImageCache.shared().clearMemory()
+        SDImageCache.shared().clearDisk { 
+            
+        }
     }
 
 }
