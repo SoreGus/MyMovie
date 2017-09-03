@@ -20,7 +20,7 @@ class MMHomeViewController: UIViewController {
         collectionView.delegate = self
         
         MMMovieManager.shared.getPopularMovies { (success) in
-            if success{
+            if success == true{
                 self.collectionView.reloadData()
             }
         }
@@ -44,16 +44,10 @@ extension MMHomeViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MMCollectionViewCell
         
         let movie = MMMovieManager.shared.arrayMovies[indexPath.row]
-        
-        cell.posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
-        cell.posterImageView.contentMode = .scaleAspectFit
-        cell.titleLabel.text = movie.title
-        cell.yearLabel.text = "\(movie.year!)"
+        cell.subscribe(movie: movie)
         
         return cell
     }

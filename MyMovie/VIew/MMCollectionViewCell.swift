@@ -13,4 +13,13 @@ class MMCollectionViewCell: UICollectionViewCell {
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var yearLabel: UILabel!
+    
+    func subscribe(movie:MMMovieModel){
+        
+        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
+        posterImageView.contentMode = .scaleAspectFit
+        titleLabel.text = movie.title
+        yearLabel.text = "\(movie.year!)"
+        
+    }
 }
