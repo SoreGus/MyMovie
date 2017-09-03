@@ -24,15 +24,15 @@ class MMMovieModel: NSObject {
     private let kPosterImagePath_KEY = "poster_path"
     private let kBackdropImagePath_KEY = "backdrop_path"
     
-    var title:String!
-    var year:Int!
-    var tmdbId:Int!
-    var releaseDate:String!
-    var runtime:Int!
-    var tagline:String!
-    var overview:String!
-    var rating:Double!
-    var genres:[String]!
+    var title:String?
+    var year:Int?
+    var tmdbId:Int?
+    var releaseDate:String?
+    var runtime:Int?
+    var tagline:String?
+    var overview:String?
+    var rating:Double?
+    var genres:[String]?
     
     var posterImagePath:String?
     var backdropImagePath:String?
@@ -43,16 +43,16 @@ class MMMovieModel: NSObject {
     
     func mapFromAPI(dict:[String:Any]) -> Bool{
         
-        guard let title = dict[kTitle_KEY] as? String else { return false }
-        guard let year = dict[kYear_KEY] as? Int else { return false }
-        guard let idsDict = dict[kIDs_KEY] as? [String:Any] else { return false }
-        guard let tmdbId = idsDict[kTMdbId_KEY] as? Int else { return false }
-        guard let releaseDate = dict[kReleaseDate_KEY] as? String else { return false }
-        guard let runtime = dict[kRunTime_KEY] as? Int else { return false }
-        guard let tagline = dict[kTagline_KEY] as? String else { return false }
-        guard let overview = dict[kOverview_KEY] as? String else { return false }
-        guard let rating = dict[kRating_KEY] as? Double else { return false }
-        guard let genres = dict[kGenres_KEY] as? [String] else { return false }
+        let title = dict[kTitle_KEY] as? String
+        let year = dict[kYear_KEY] as? Int
+        let idsDict = dict[kIDs_KEY] as? [String:Any]
+        let tmdbId = idsDict?[kTMdbId_KEY] as? Int
+        let releaseDate = dict[kReleaseDate_KEY] as? String
+        let runtime = dict[kRunTime_KEY] as? Int
+        let tagline = dict[kTagline_KEY] as? String
+        let overview = dict[kOverview_KEY] as? String
+        let rating = dict[kRating_KEY] as? Double
+        let genres = dict[kGenres_KEY] as? [String]
         
         self.title = title
         self.year = year

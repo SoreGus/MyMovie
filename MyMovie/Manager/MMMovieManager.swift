@@ -33,4 +33,21 @@ class MMMovieManager: NSObject {
         
     }
     
+    func searchMovies(seachString:String,completion:@escaping (_ success:Bool)->Void){
+        
+        business.searchMovies(seachString: seachString) { (success, arrayMovies) in
+            
+            if success == true{
+                
+                MMMovieManager.shared.arrayMovies = arrayMovies!
+                completion(true)
+                
+            } else{
+                completion(false)
+            }
+            
+        }
+        
+    }
+    
 }

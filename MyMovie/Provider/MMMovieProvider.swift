@@ -12,7 +12,7 @@ class MMMovieProvider: NSObject {
 
     private let baseURL = "https://api.trakt.tv/"
     private let popularURLComplement = "movies/popular?extended=full"
-    private let searchMovieURLComplement = "movie?query=<search_name>&extended=full"
+    private let searchMovieURLComplement = "search/movie?query=<search_name>&extended=full"
     
     private let kContentType_FIELD = "Content-Type"
     private let kApiVersion_FIELD = "trakt-api-version"

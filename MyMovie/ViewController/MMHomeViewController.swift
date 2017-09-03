@@ -62,6 +62,15 @@ class MMHomeViewController: MMBaseViewController {
             }
         }
         
+//        MMMovieManager.shared.searchMovies(seachString: "Inter") { (success) in
+//            if success == true{
+//                DispatchQueue.main.async {
+//                    self.hideLoading()
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {

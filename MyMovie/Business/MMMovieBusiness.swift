@@ -15,6 +15,8 @@ class MMMovieBusiness: NSObject {
     
     let kImageURLPrefix = "https://image.tmdb.org/t/p/w300"
     
+    private let kMovie_KEY = "movie"
+    
     func getPopularMovies(completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
         
         movieProvider.getPopularMovies { (success, data) in
@@ -23,29 +25,9 @@ class MMMovieBusiness: NSObject {
                 completion(false,nil)
             } else{
                 
-                self.parseMovies(data: data!, completion: { (success, arrayMovies) in
+                self.getMoviesWithImages(date: data!,completion: { (success, moviesArray) in
                     
-                    if success == false{
-                        completion(false,nil)
-                        return
-                    }
-                    
-                    var arrayMoviesWithImages:[MMMovieModel] = []
-                    
-                    for movie in arrayMovies!{
-                        
-                        self.getImagesFromTMDB(movie: movie, completion: { (success, movieWithImage) in
-                            if success == false{
-                                completion(false,nil)
-                                return
-                            }
-                            
-                            arrayMoviesWithImages.append(movieWithImage!)
-                            
-                            completion(true,arrayMoviesWithImages)
-                        })
-                        
-                    }
+                    completion(success,moviesArray)
                     
                 })
                 
@@ -55,9 +37,89 @@ class MMMovieBusiness: NSObject {
         
     }
     
+    func searchMovies(seachString:String,completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
+        
+        movieProvider.searchMovies(searchString: seachString) { (success, data) in
+            
+            if success == false{
+                completion(false,nil)
+            } else{
+                
+                self.getSearchMoviesWithImages(date: data!,completion: { (success, moviesArray) in
+                    
+                    completion(success,moviesArray)
+                    
+                })
+                
+            }
+            
+        }
+        
+    }
+    
+    func getMoviesWithImages(date:Data,completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
+        
+        self.parseMovies(data: date, completion: { (success, arrayMovies) in
+            
+            if success == false{
+                completion(false,nil)
+                return
+            }
+            
+            var arrayMoviesWithImages:[MMMovieModel] = []
+            
+            for movie in arrayMovies!{
+                
+                self.getImagesFromTMDB(movie: movie, completion: { (success, movieWithImage) in
+                    if success == false{
+                        completion(false,nil)
+                        return
+                    }
+                    
+                    arrayMoviesWithImages.append(movieWithImage!)
+                    
+                    completion(true,arrayMoviesWithImages)
+                })
+                
+            }
+            
+        })
+        
+    }
+    
+    func getSearchMoviesWithImages(date:Data,completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
+        
+        self.parseSearchMovies(data: date, completion: { (success, arrayMovies) in
+            
+            if success == false{
+                completion(false,nil)
+                return
+            }
+            
+            var arrayMoviesWithImages:[MMMovieModel] = []
+            
+            for movie in arrayMovies!{
+                
+                self.getImagesFromTMDB(movie: movie, completion: { (success, movieWithImage) in
+                    if success == false{
+                        completion(false,nil)
+                        return
+                    }
+                    
+                    arrayMoviesWithImages.append(movieWithImage!)
+                    
+                    completion(true,arrayMoviesWithImages)
+                })
+                
+            }
+            
+        })
+        
+    }
+    
     func getImagesFromTMDB(movie:MMMovieModel,completion:@escaping (_ success:Bool,_ movie:MMMovieModel?)->Void){
         
-        movieImageProvider.getImagesFromTMDB(tmdbId: movie.tmdbId) { (success, data) in
+        movieImageProvider.getImagesFromTMDB(tmdbId: movie.tmdbId!) { (success, data) in
             
             if success == false{
                 completion(false,nil)
@@ -107,6 +169,39 @@ class MMMovieBusiness: NSObject {
             var arrayMovies:[MMMovieModel] = []
             
             for object in jsonArray{
+                
+                let movie = MMMovieModel.init()
+                if movie.mapFromAPI(dict: object) == false{
+                    completion(false,nil)
+                    return
+                }
+                arrayMovies.append(movie)
+                
+            }
+            
+            completion(true,arrayMovies)
+            
+        } catch{
+            completion(false,nil)
+        }
+        
+    }
+    
+    func parseSearchMovies(data:Data,completion:@escaping (_ success:Bool,_ movies:[MMMovieModel]?)->Void){
+        
+        do{
+            
+            guard let rootJsonArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [[String:Any]] else { completion(false,nil); return }
+            
+            
+            var arrayMovies:[MMMovieModel] = []
+            
+            for rootObject in rootJsonArray{
+                
+                guard let object = rootObject[kMovie_KEY] as? [String:Any] else{
+                    completion(false,nil)
+                    return
+                }
                 
                 let movie = MMMovieModel.init()
                 if movie.mapFromAPI(dict: object) == false{
