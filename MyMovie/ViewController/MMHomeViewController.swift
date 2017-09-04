@@ -30,7 +30,7 @@ class MMHomeViewController: MMBaseViewController {
         if reachability.isReachable{
             self.loadPopularMovies()
         } else{
-            showNotice(text: "Sem Conexão", time: nil)
+            showNotice(text: "No connection", time: nil)
         }
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
@@ -53,7 +53,7 @@ class MMHomeViewController: MMBaseViewController {
         
         reachability.whenUnreachable = { reachability in
             DispatchQueue.main.async {
-                self.showNotice(text: "Sem Conexão", time: nil)
+                self.showNotice(text: "No connection", time: nil)
             }
         }
         
@@ -71,7 +71,7 @@ class MMHomeViewController: MMBaseViewController {
         if reachability.isReachable{
             self.loadPopularMovies()
         } else{
-            showNotice(text: "Sem Conexão", time: nil)
+            showNotice(text: "No connection", time: nil)
         }
     }
     
@@ -130,14 +130,14 @@ class MMHomeViewController: MMBaseViewController {
                 
                 DispatchQueue.main.async {
                     self.hideLoading()
-                    self.showNotice(text: "Pesquisa sem resultado.", time: nil)
+                    self.showNotice(text: "Search without result.", time: nil)
                 }
                 
             }else{
                 
                 DispatchQueue.main.async {
                     self.hideLoading()
-                    self.showNotice(text: "Ocorreu algum erro, tente novamente.", time: nil)
+                    self.showNotice(text: "Errors, please try again.", time: nil)
                 }
                 
             }
@@ -176,6 +176,13 @@ extension MMHomeViewController : UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let movie = MMMovieManager.shared.arrayMovies[indexPath.row]
+        MMMovieManager.shared.selectedMovie = movie
+        
+    }
+    
 }
 
 extension MMHomeViewController : MMSearchBarDelegate{
@@ -190,7 +197,7 @@ extension MMHomeViewController : MMSearchBarDelegate{
             MMMovieManager.shared.searchText = searchText
             loadSearchMovies(searchText: MMMovieManager.shared.searchText)
         } else{
-            showNotice(text: "Sem Conexão", time: nil)
+            showNotice(text: "No connection", time: nil)
         }
         
     }

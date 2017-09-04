@@ -10,6 +10,11 @@
 		402D00B31F5CB9A000C6374C /* MMNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B21F5CB9A000C6374C /* MMNoticeView.swift */; };
 		402D00B51F5CBD3D00C6374C /* MMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B41F5CBD3D00C6374C /* MMBaseViewController.swift */; };
 		402D00B71F5CDBB100C6374C /* MMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B61F5CDBB100C6374C /* MMSearchBar.swift */; };
+		402D00B91F5CEFF000C6374C /* MMMovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B81F5CEFF000C6374C /* MMMovieDetailViewController.swift */; };
+		402D00BB1F5CFD6400C6374C /* MMOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00BA1F5CFD6400C6374C /* MMOverviewCell.swift */; };
+		402D00BD1F5D009300C6374C /* MMPosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00BC1F5D009300C6374C /* MMPosterCell.swift */; };
+		402D00BF1F5D023200C6374C /* MMSimpleTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00BE1F5D023200C6374C /* MMSimpleTextCell.swift */; };
+		402D00C11F5D07AE00C6374C /* MMDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00C01F5D07AE00C6374C /* MMDetailCell.swift */; };
 		40CF44921F5B42EF008A3058 /* MMMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44911F5B42EF008A3058 /* MMMovieModel.swift */; };
 		40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */; };
 		40CF449B1F5B541A008A3058 /* MMMovieImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF449A1F5B541A008A3058 /* MMMovieImageProvider.swift */; };
@@ -29,6 +34,11 @@
 		402D00B21F5CB9A000C6374C /* MMNoticeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMNoticeView.swift; sourceTree = "<group>"; };
 		402D00B41F5CBD3D00C6374C /* MMBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMBaseViewController.swift; sourceTree = "<group>"; };
 		402D00B61F5CDBB100C6374C /* MMSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSearchBar.swift; sourceTree = "<group>"; };
+		402D00B81F5CEFF000C6374C /* MMMovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieDetailViewController.swift; sourceTree = "<group>"; };
+		402D00BA1F5CFD6400C6374C /* MMOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMOverviewCell.swift; sourceTree = "<group>"; };
+		402D00BC1F5D009300C6374C /* MMPosterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMPosterCell.swift; sourceTree = "<group>"; };
+		402D00BE1F5D023200C6374C /* MMSimpleTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSimpleTextCell.swift; sourceTree = "<group>"; };
+		402D00C01F5D07AE00C6374C /* MMDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMDetailCell.swift; sourceTree = "<group>"; };
 		40CF44911F5B42EF008A3058 /* MMMovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieModel.swift; sourceTree = "<group>"; };
 		40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieProvider.swift; sourceTree = "<group>"; };
 		40CF449A1F5B541A008A3058 /* MMMovieImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieImageProvider.swift; sourceTree = "<group>"; };
@@ -104,6 +114,7 @@
 			children = (
 				40CF44A51F5B7634008A3058 /* MMHomeViewController.swift */,
 				402D00B41F5CBD3D00C6374C /* MMBaseViewController.swift */,
+				402D00B81F5CEFF000C6374C /* MMMovieDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -114,6 +125,10 @@
 				40CF44A81F5B7883008A3058 /* MMCollectionViewCell.swift */,
 				402D00B21F5CB9A000C6374C /* MMNoticeView.swift */,
 				402D00B61F5CDBB100C6374C /* MMSearchBar.swift */,
+				402D00BA1F5CFD6400C6374C /* MMOverviewCell.swift */,
+				402D00BC1F5D009300C6374C /* MMPosterCell.swift */,
+				402D00BE1F5D023200C6374C /* MMSimpleTextCell.swift */,
+				402D00C01F5D07AE00C6374C /* MMDetailCell.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -287,6 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D00BD1F5D009300C6374C /* MMPosterCell.swift in Sources */,
+				402D00BF1F5D023200C6374C /* MMSimpleTextCell.swift in Sources */,
+				402D00B91F5CEFF000C6374C /* MMMovieDetailViewController.swift in Sources */,
 				40CF449B1F5B541A008A3058 /* MMMovieImageProvider.swift in Sources */,
 				402D00B71F5CDBB100C6374C /* MMSearchBar.swift in Sources */,
 				40CF44A11F5B61AC008A3058 /* MMMovieManager.swift in Sources */,
@@ -294,6 +312,8 @@
 				40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */,
 				40F3427B1F5B384900A4FAC5 /* AppDelegate.swift in Sources */,
 				40CF44921F5B42EF008A3058 /* MMMovieModel.swift in Sources */,
+				402D00C11F5D07AE00C6374C /* MMDetailCell.swift in Sources */,
+				402D00BB1F5CFD6400C6374C /* MMOverviewCell.swift in Sources */,
 				40CF44A61F5B7634008A3058 /* MMHomeViewController.swift in Sources */,
 				40CF44A91F5B7883008A3058 /* MMCollectionViewCell.swift in Sources */,
 				402D00B31F5CB9A000C6374C /* MMNoticeView.swift in Sources */,

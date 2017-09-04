@@ -16,6 +16,8 @@ class MMMovieManager: NSObject {
     
     static let shared = MMMovieManager()
     
+    var selectedMovie:MMMovieModel! = nil
+    
     var isSearch:Bool! = false
     var searchText:String! = ""
     
