@@ -16,10 +16,15 @@ class MMCollectionViewCell: UICollectionViewCell {
     
     func subscribe(movie:MMMovieModel){
         
-        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
+        //posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
+        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!), placeholderImage: UIImage.init(named: "placeholder"), options: .refreshCached, completed: nil)
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.text = movie.title
-        yearLabel.text = "\(movie.year!)"
+        if movie.year != nil{
+            yearLabel.text = "\(movie.year!)"
+        } else{
+            yearLabel.text = "---"
+        }
         
     }
 }

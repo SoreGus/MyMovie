@@ -70,8 +70,8 @@ class MMMovieModel: NSObject {
     
     func mapImagePathsFromTMDBAPI(dict:[String:Any]) -> Bool{
         
-        guard let posterImagePath = dict[kPosterImagePath_KEY] as? String else { return false }
-        guard let backdropImagePath = dict[kBackdropImagePath_KEY] as? String else { return false }
+        let posterImagePath = dict[kPosterImagePath_KEY] as? String
+        let backdropImagePath = dict[kBackdropImagePath_KEY] as? String
         
         self.posterImagePath = posterImagePath
         self.backdropImagePath = backdropImagePath

@@ -149,8 +149,12 @@ class MMMovieBusiness: NSObject {
                 completion(false,nil)
                 return
             }
-            movieObject.posterImagePath = kImageURLPrefix + movieObject.posterImagePath!
-            movieObject.backdropImagePath = kImageURLPrefix + movieObject.backdropImagePath!
+            if movieObject.posterImagePath != nil{
+                movieObject.posterImagePath = kImageURLPrefix + movieObject.posterImagePath!
+            }
+            if movieObject.backdropImagePath != nil{
+                movieObject.backdropImagePath = kImageURLPrefix + movieObject.backdropImagePath!
+            }
             
             completion(true,movieObject)
             
