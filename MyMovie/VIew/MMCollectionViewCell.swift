@@ -17,7 +17,7 @@ class MMCollectionViewCell: UICollectionViewCell {
     func subscribe(movie:MMMovieModel){
         
         //posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
-        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!), placeholderImage: UIImage.init(named: "placeholder"), options: .refreshCached, completed: nil)
+        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!), placeholderImage: UIImage.init(named: "placeholder"), options: .progressiveDownload, completed: nil)
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.text = movie.title
         if movie.year != nil{
