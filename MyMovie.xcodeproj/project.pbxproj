@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		402D00B31F5CB9A000C6374C /* MMNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B21F5CB9A000C6374C /* MMNoticeView.swift */; };
 		402D00B51F5CBD3D00C6374C /* MMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B41F5CBD3D00C6374C /* MMBaseViewController.swift */; };
+		402D00B71F5CDBB100C6374C /* MMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D00B61F5CDBB100C6374C /* MMSearchBar.swift */; };
 		40CF44921F5B42EF008A3058 /* MMMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44911F5B42EF008A3058 /* MMMovieModel.swift */; };
 		40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */; };
 		40CF449B1F5B541A008A3058 /* MMMovieImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CF449A1F5B541A008A3058 /* MMMovieImageProvider.swift */; };
@@ -27,6 +28,7 @@
 		2A5AE632F050DF99FE3D8E6F /* Pods-MyMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovie.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMovie/Pods-MyMovie.release.xcconfig"; sourceTree = "<group>"; };
 		402D00B21F5CB9A000C6374C /* MMNoticeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMNoticeView.swift; sourceTree = "<group>"; };
 		402D00B41F5CBD3D00C6374C /* MMBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMBaseViewController.swift; sourceTree = "<group>"; };
+		402D00B61F5CDBB100C6374C /* MMSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSearchBar.swift; sourceTree = "<group>"; };
 		40CF44911F5B42EF008A3058 /* MMMovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieModel.swift; sourceTree = "<group>"; };
 		40CF44971F5B4C22008A3058 /* MMMovieProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieProvider.swift; sourceTree = "<group>"; };
 		40CF449A1F5B541A008A3058 /* MMMovieImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMMovieImageProvider.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				40CF44A81F5B7883008A3058 /* MMCollectionViewCell.swift */,
 				402D00B21F5CB9A000C6374C /* MMNoticeView.swift */,
+				402D00B61F5CDBB100C6374C /* MMSearchBar.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40CF449B1F5B541A008A3058 /* MMMovieImageProvider.swift in Sources */,
+				402D00B71F5CDBB100C6374C /* MMSearchBar.swift in Sources */,
 				40CF44A11F5B61AC008A3058 /* MMMovieManager.swift in Sources */,
 				40CF449E1F5B56D0008A3058 /* MMMovieBusiness.swift in Sources */,
 				40CF44981F5B4C22008A3058 /* MMMovieProvider.swift in Sources */,

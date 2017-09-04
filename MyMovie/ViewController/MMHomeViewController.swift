@@ -17,6 +17,8 @@ class MMHomeViewController: MMBaseViewController {
     
     let reachability = Reachability()!
     
+    var searchBar:MMSearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,14 +28,26 @@ class MMHomeViewController: MMBaseViewController {
         showLoading()
         
         if reachability.isReachable{
-            loadMovies()
+            self.loadPopularMovies()
         } else{
             showNotice(text: "Sem Conexão", time: nil)
         }
         
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+        tap.delegate = self
+        
+        searchBar = MMSearchBar.init(screenFrame: self.view.frame, navigationBarHeight: (self.navigationController?.navigationBar.frame.height)!)
+        searchBar.movieSearchDelegate = self
+        self.view.addSubview(searchBar)
+        
         reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
-                self.loadMovies()
+                if MMMovieManager.shared.isSearch == false{
+                    self.loadPopularMovies()
+                } else{
+                    self.loadSearchMovies(searchText: MMMovieManager.shared.searchText)
+                }
             }
         }
         
@@ -50,8 +64,43 @@ class MMHomeViewController: MMBaseViewController {
         }
         
     }
+    @IBAction func popularAction(_ sender: Any) {
+        searchBar.resignFirstResponder()
+        searchBar.hide()
+        MMMovieManager.shared.isSearch = false
+        if reachability.isReachable{
+            self.loadPopularMovies()
+        } else{
+            showNotice(text: "Sem Conexão", time: nil)
+        }
+    }
     
-    func loadMovies(){
+    @IBAction func searchAction(_ sender: Any) {
+        
+        if MMMovieManager.shared.isSearch == false{
+            
+            searchBar.show()
+            MMMovieManager.shared.isSearch = true
+            
+        } else{
+            
+            searchBar.hide()
+            MMMovieManager.shared.isSearch = false
+            
+        }
+        
+    }
+    
+    func hideKeyboard(){
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func loadPopularMovies(){
+        
+        MMMovieManager.shared.arrayMovies = []
+        showLoading()
         
         MMMovieManager.shared.getPopularMovies { (success) in
             if success == true{
@@ -62,14 +111,37 @@ class MMHomeViewController: MMBaseViewController {
             }
         }
         
-//        MMMovieManager.shared.searchMovies(seachString: "Inter") { (success) in
-//            if success == true{
-//                DispatchQueue.main.async {
-//                    self.hideLoading()
-//                    self.collectionView.reloadData()
-//                }
-//            }
-//        }
+    }
+    
+    func loadSearchMovies(searchText:String){
+        
+        MMMovieManager.shared.arrayMovies = []
+        
+        showLoading()
+        self.collectionView.reloadData()
+        
+        MMMovieManager.shared.searchMovies(seachString: searchText) { (success) in
+            if success == true && MMMovieManager.shared.arrayMovies.count > 0{
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                    self.collectionView.reloadData()
+                }
+            } else if(success == true && MMMovieManager.shared.arrayMovies.count == 0){
+                
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                    self.showNotice(text: "Pesquisa sem resultado.", time: nil)
+                }
+                
+            }else{
+                
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                    self.showNotice(text: "Ocorreu algum erro, tente novamente.", time: nil)
+                }
+                
+            }
+        }
         
     }
 
@@ -102,6 +174,48 @@ extension MMHomeViewController : UICollectionViewDelegate, UICollectionViewDataS
         //print(SDImageCache.shared().getSize())
         
         return cell
+    }
+    
+}
+
+extension MMHomeViewController : MMSearchBarDelegate{
+    
+    func didRecognizeSearchText(searchText: String) {
+        
+        searchBar.resignFirstResponder()
+        searchBar.hide()
+        MMMovieManager.shared.isSearch = false
+        
+        if reachability.isReachable{
+            MMMovieManager.shared.searchText = searchText
+            loadSearchMovies(searchText: MMMovieManager.shared.searchText)
+        } else{
+            showNotice(text: "Sem Conexão", time: nil)
+        }
+        
+    }
+    
+    func cancel() {
+        
+        searchBar.resignFirstResponder()
+        searchBar.hide()
+        
+    }
+    
+}
+
+extension MMHomeViewController : UIGestureRecognizerDelegate{
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        if searchBar.isFirstResponder{
+            searchBar.hide()
+            searchBar.resignFirstResponder()
+            return true
+        }
+        
+        return false
+        
     }
     
 }

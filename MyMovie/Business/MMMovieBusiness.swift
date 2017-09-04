@@ -98,6 +98,10 @@ class MMMovieBusiness: NSObject {
             
             var arrayMoviesWithImages:[MMMovieModel] = []
             
+            if arrayMovies?.count == 0{
+                completion(true,arrayMovies)
+            }
+            
             for movie in arrayMovies!{
                 
                 self.getImagesFromTMDB(movie: movie, completion: { (success, movieWithImage) in

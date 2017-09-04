@@ -17,7 +17,11 @@ class MMCollectionViewCell: UICollectionViewCell {
     func subscribe(movie:MMMovieModel){
         
         //posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!))
-        posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!), placeholderImage: UIImage.init(named: "placeholder"), options: .progressiveDownload, completed: nil)
+        if movie.posterImagePath == nil{
+            posterImageView.image = #imageLiteral(resourceName: "placeholder")
+        } else{
+            posterImageView.sd_setImage(with: URL.init(string: movie.posterImagePath!), placeholderImage: UIImage.init(named: "placeholder"), options: .progressiveDownload, completed: nil)
+        }
         posterImageView.contentMode = .scaleAspectFit
         titleLabel.text = movie.title
         if movie.year != nil{

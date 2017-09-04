@@ -111,7 +111,20 @@
                             <constraint firstAttribute="trailing" secondItem="PlR-1I-hHv" secondAttribute="trailing" id="kLe-Zw-pJZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Movie" id="R5V-Yu-Saz"/>
+                    <navigationItem key="navigationItem" title="My Movie" id="R5V-Yu-Saz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Qns-vp-LcR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchAction:" destination="U0e-Dk-nHA" id="JTe-Rt-lJU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="starIcon" id="NTT-g3-67K">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="popularAction:" destination="U0e-Dk-nHA" id="w14-Dr-So7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="PlR-1I-hHv" id="Lwj-0w-Pz5"/>
                     </connections>
@@ -121,4 +134,7 @@
             <point key="canvasLocation" x="96.799999999999997" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="starIcon" width="15" height="14"/>
+    </resources>
 </document>

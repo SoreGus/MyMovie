@@ -47,7 +47,9 @@ class MMMovieProvider: NSObject {
     
     private func sendRequest(urlString:String,completion:@escaping (_ success:Bool,_ data:Data?)->Void){
         
-        let url = URL.init(string: urlString)
+        let urlStringFormatted = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
+        let url = URL.init(string: urlStringFormatted!)
         
         let request = NSMutableURLRequest.init(url: url!)
         

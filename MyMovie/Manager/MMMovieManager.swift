@@ -16,6 +16,9 @@ class MMMovieManager: NSObject {
     
     static let shared = MMMovieManager()
     
+    var isSearch:Bool! = false
+    var searchText:String! = ""
+    
     func getPopularMovies(completion:@escaping (_ success:Bool)->Void){
         
         business.getPopularMovies { (success, arrayMovies) in
